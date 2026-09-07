@@ -1,0 +1,65 @@
+name: Daily swing scan
+
+on:
+  schedule:
+    # 22:15 UTC, Monday-Friday. That is about 6:15pm New York time in summer,
+    # 5:15pm in winter - after the close, once the data has settled.
+    # Deliberately not on the hour: :00 is the most congested minute on
+    # GitHub's shared scheduler and gets delayed the most.
+    - cron: "15 22 * * 1-5"
+  # Lets you run it by hand from the Actions tab any time.
+  workflow_dispatch:
+
+# Needed so the job can commit the day's results back to the repo.
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the scan
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python swing_scanner.py
+
+      - name: Save the report as a downloadable file
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scan-report
+          path: |
+            report.html
+            results/*.csv
+          retention-days: 90
+          if-no-files-found: ignore
+
+      - name: Commit today's results
+        run: |
+          git config user.name "swing-scanner"
+          git config user.email "actions@github.com"
+          git add results/
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Scan results $(date -u +%Y-%m-%d)"
+            git push
+          fi
