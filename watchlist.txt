@@ -1,0 +1,12 @@
+# One ticker per line. Lines starting with # are ignored.
+# Replace these with the symbols from your Finviz screen export.
+AAPL
+MSFT
+NVDA
+JPM
+UNH
+CAT
+COST
+LIN
+ADBE
+HON
