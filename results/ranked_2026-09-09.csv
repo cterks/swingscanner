@@ -1,0 +1,3 @@
+ticker,score,price,rsi14,pullback_pct_below_sma50,coil_ratio,rel_strength_pct_vs_spy,atr14,suggested_stop,suggested_target,risk_pct
+MSFT,0.6,491.6499938964844,54.8,-9.63,1.039,23.01,9.88,476.84,521.28,3.01
+JPM,0.4,354.7099914550781,49.8,-1.15,1.247,8.05,5.81,346.0,372.13,2.46
