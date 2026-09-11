@@ -1,0 +1,3 @@
+ticker,score,price,rsi14,pullback_pct_below_sma50,coil_ratio,rel_strength_pct_vs_spy,atr14,suggested_stop,suggested_target,risk_pct
+JPM,0.7,356.2300109863281,51.9,-1.29,1.094,5.94,5.61,347.82,373.05,2.36
+NVDA,0.3,218.2899932861328,49.9,-2.79,0.833,3.24,7.67,206.79,241.29,5.27
