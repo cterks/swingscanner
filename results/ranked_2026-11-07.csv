@@ -1,0 +1,4 @@
+ticker,score,price,rsi14,pullback_pct_below_sma50,coil_ratio,rel_strength_pct_vs_spy,atr14,suggested_stop,suggested_target,risk_pct
+UNH,0.7,394.1499938964844,46.3,-1.02,1.156,4.62,11.98,376.17,430.1,4.56
+AAPL,0.522,342.3699951171875,51.5,-1.89,1.581,17.4,9.02,328.84,369.42,3.95
+MSFT,0.179,530.6099853515625,52.1,-2.7,1.627,12.23,15.88,506.8,578.24,4.49
