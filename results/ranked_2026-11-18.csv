@@ -1,0 +1,2 @@
+ticker,score,price,rsi14,pullback_pct_below_sma50,coil_ratio,rel_strength_pct_vs_spy,atr14,suggested_stop,suggested_target,risk_pct
+LIN,0.5,515.1099853515625,53.9,-4.69,0.868,9.29,10.53,499.32,546.69,3.07
